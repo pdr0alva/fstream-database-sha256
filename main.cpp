@@ -12,9 +12,9 @@
 int main (int argc, char *argv[])
 {
     std::string database_name = "test.txt";
+    User user("otavio", "224");
 
-    
-
+    writeNewUser("test.txt", &user);
     return 0;
 }
 
