@@ -37,7 +37,7 @@ bool User::setUserHash(std::string &name_hash_arg, std::string &password_hash_ar
 
 bool User::setUserStr(std::string &name_arg, std::string &password_arg)
 {
-
+    
 
     return 1;
 }

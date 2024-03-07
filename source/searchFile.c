@@ -12,7 +12,6 @@ inline User filterUser(std::string &line)
     std::string filter_password = line.substr(line.find('&') + 1, 64);
 
     filter_user.setUserHash(filter_name, filter_password);
-
     return filter_user;
 }
 
