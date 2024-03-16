@@ -6,27 +6,24 @@
 class User
 {
 private:    
-    std::string name_string, password_string;
     std::string name_hash, password_hash;
 
-    void convertStrToHash();
+    void convertStrToHash(std::string &name_string, std::string &password_string);
     
 public: 
-    bool setUserStr(std::string &name_arg, std::string &password_arg);
-    bool setUserHash(std::string &name_hash_arg, std::string &password_hash_arg);
+    bool setUserByString(std::string &name_arg, std::string &password_arg);
+    bool setUserByHash(std::string &name_hash_arg, std::string &password_hash_arg);
     
-    inline std::string getNameStr() { return this -> name_string; }
-    inline std::string getPasswordStr() { return this -> password_string; }
     inline std::string getNameHash() { return this -> name_hash; }
     inline std::string getPasswordHash() { return this -> password_hash; }
 
-    User(std::string cons_name = "", std::string cons_password = ""): name_string(cons_name), password_string(cons_password)
+    User(std::string cons_name = "", std::string cons_password = "")
     {
-        convertStrToHash();
+        convertStrToHash(cons_name, cons_password);
     }
 };
 
-bool User::setUserHash(std::string &name_hash_arg, std::string &password_hash_arg)
+bool User::setUserByHash(std::string &name_hash_arg, std::string &password_hash_arg)
 {
     /* VERIFY IF IS A REAL HASH */
     this->name_hash = name_hash_arg;
@@ -35,14 +32,13 @@ bool User::setUserHash(std::string &name_hash_arg, std::string &password_hash_ar
     return 1;
 }
 
-bool User::setUserStr(std::string &name_arg, std::string &password_arg)
+bool User::setUserByString(std::string &name_arg, std::string &password_arg)
 {
-    
-
-    return 1;
+    convertStrToHash(name_arg, password_arg);
+    return true;    
 }
 
-void User::convertStrToHash() 
+void User::convertStrToHash(std::string &name_string, std::string &password_string) 
 {
     auto calculateSHA256 = [](const std::string &input) -> std::string 
     {
@@ -60,8 +56,8 @@ void User::convertStrToHash()
         return ss.str();
     };
 
-    this->name_hash = calculateSHA256(this->name_string); 
-    this->password_hash = calculateSHA256(this->password_string); 
+    this->name_hash = calculateSHA256(name_string); 
+    this->password_hash = calculateSHA256(password_string); 
 
     // name_hash = name_string;
     // password_hash = password_string;

@@ -11,8 +11,13 @@ inline User filterUser(std::string &line)
     std::string filter_name = line.substr(line.find(':') + 1, 64);
     std::string filter_password = line.substr(line.find('&') + 1, 64);
 
-    filter_user.setUserHash(filter_name, filter_password);
+    filter_user.setUserByHash(filter_name, filter_password);
     return filter_user;
+}
+
+inline std::string filterUserName (std::string &line)
+{
+    return line.substr(line.find(':') + 1, 64);
 }
 
 long int searchLastIndex(std::string &database_name)
@@ -103,4 +108,28 @@ User searchUserByName(std::string &database_name, std::string search_name_hash)
     }
     
     return search_user;
+}
+
+int searchUserExistence(std::string database_name, std::string user_name)
+{
+    int index{-1};
+
+    std::string line_buffer; 
+    std::ifstream database;
+
+    database.open(database_name, std::ios::in);
+
+    if (database.is_open())
+    {
+        while (getline(database, line_buffer))
+        {
+            if (filterUserName(line_buffer) == user_name)
+            {
+                index = filterId(line_buffer);
+                return index;
+            }
+        }
+    }
+
+    return -1; /* will return -1 if user does not exists */
 }
