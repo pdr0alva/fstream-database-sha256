@@ -19,6 +19,7 @@ public:
 
     User(std::string cons_name = "", std::string cons_password = "")
     {
+        std::transform(cons_name.begin(), cons_name.end(), cons_name.begin(), ::toupper);
         convertStrToHash(cons_name, cons_password);
     }
 };
@@ -32,14 +33,18 @@ bool User::setUserByHash(std::string &name_hash_arg, std::string &password_hash_
     return 1;
 }
 
-bool User::setUserByString(std::string &name_arg, std::string &password_arg)
+bool User::setUserByString(std::string &name_string, std::string &password_string)
 {
-    convertStrToHash(name_arg, password_arg);
+    std::transform(name_string.begin(), name_string.end(), name_string.begin(), ::toupper);
+
+    std::cout << "\n\n" << name_string << ", " << password_string << "\n\n";
+
+    convertStrToHash(name_string, password_string);
     return true;    
 }
 
 void User::convertStrToHash(std::string &name_string, std::string &password_string) 
-{
+{   
     auto calculateSHA256 = [](const std::string &input) -> std::string 
     {
         SHA256_CTX sha256_context;

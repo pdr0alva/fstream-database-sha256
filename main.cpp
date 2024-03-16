@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <iostream>
 #include <string.h>
+#include <algorithm>
 #include <fstream>
 #include <iomanip>
 #include <openssl/sha.h>
 
-#include "./source/class.h"
+#include "./source/User.h"
 #include "./source/searchFile.c"
 #include "./source/modifyFile.c"
 
@@ -30,7 +31,7 @@ int main (void)
     }
     else 
     {
-        std::cout << "\ nError: [ User Already Exists! ]";
+        std::cout << "\nError: [ User Already Exists! ]";
     }
 
 	return 0;
@@ -38,7 +39,6 @@ int main (void)
 
 /** 
     IMPORTANT: Organize the libs in modules (./Search, ./Modify)
-    *!USER -> NAME IS CASE SENSITIVE -- NEED TO FIX THAT --
 
     Test: Pass class User as reference instead of pointer
 

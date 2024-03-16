@@ -26,5 +26,5 @@ int writeNewUser(std::string database_name, User *new_user)
 
 int deleteUser(std::string database_name, User *delete_user)
 {
-
+    return 0; // Will be developed soon! 
 }
