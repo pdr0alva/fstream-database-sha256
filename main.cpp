@@ -39,13 +39,18 @@ int main (void)
 
 /** 
     IMPORTANT: Organize the libs in modules (./Search, ./Modify)
+    ANALIZE:   Set a class to operate and manage the database file
 
-    Test: Pass class User as reference instead of pointer
 
  -> Features to add (!)
-
-	modifyFile.c -> writeNewUser(param): 
-		- verify if user already exists before adding it
+    
+    1. Start Database properly (security.h) 
+        a. Verify the id sequence (if it's crescent, if not, organize it) => first organize in crescent, after it, set to the {1, 2, 3, ... } pattern
+        b. Delete duplicated users (delete the newest one)
+        c. Verify if every user has name and password in a valid SHA256 Hash (if not valid, delete it) 
+    
+    2. Features to add: number of columns defined when starting database
+     
 
  -> Critical Functions:
         - filterUser(std::string &line) => searchFile.c 
