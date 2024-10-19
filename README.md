@@ -41,3 +41,11 @@ Concluding: It is a good library for simple projects, such as games, portfolio-m
 be used for **really important** data 
 
 </p>
+
+<hr>
+
+### Future of the project
+
+- [ ] `.dbinfo` file to describe the database
+- [ ] Create a table with N number of columns, each with T data type
+- [ ] Cache for optimizing search
