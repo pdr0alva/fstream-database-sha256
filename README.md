@@ -46,6 +46,6 @@ be used for **really important** data
 
 ### Future of the project
 
-- [ ] `.dbinfo` file to describe the database
+- [ ] file to describe the database
 - [ ] Create a table with N number of columns, each with T data type
 - [ ] Cache for optimizing search
